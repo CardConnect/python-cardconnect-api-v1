@@ -4,7 +4,7 @@ import textwrap
 from cardconnect import error
 
 try:
-    import urllib2
+    import urllib.request, urllib.error, urllib.parse
 except ImportError:
     pass
 
@@ -58,19 +58,19 @@ class RequestsClient(HTTPClient): # noqa
 class Urllib2Client(HTTPClient): # noqa
 
     def request(self, method, url, headers, put_data=None): # noqa
-        if sys.version_info >= (3, 0) and isinstance(put_data, basestring):
+        if sys.version_info >= (3, 0) and isinstance(put_data, str):
             put_data = put_data.encode('utf-8')
 
-        req = urllib2.Request(url, put_data, headers)
+        req = urllib.request.Request(url, put_data, headers)
 
         try:
-            response = urllib2.urlopen(req)
+            response = urllib.request.urlopen(req)
             content = response.read()
             status_code = response.code
-        except urllib2.HTTPError as e:
+        except urllib.error.HTTPError as e:
             status_code = e.code
             content = e.read()
-        except (urllib2.URLError, ValueError) as e:
+        except (urllib.error.URLError, ValueError) as e:
             super(Urllib2Client, self).handle_request_error(e)
 
         return content, status_code

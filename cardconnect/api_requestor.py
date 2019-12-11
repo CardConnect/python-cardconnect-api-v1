@@ -1,12 +1,12 @@
-import urllib # noqa
-import urlparse
+import urllib.request, urllib.parse, urllib.error # noqa
+import urllib.parse
 import base64
 
 from cardconnect import error, http_client, util
 
 
 def _api_encode(data):
-    for key, value in data.iteritems():
+    for key, value in data.items():
         key = util.utf8(key)
         if value is None:
             continue
@@ -15,12 +15,12 @@ def _api_encode(data):
 
 
 def _build_api_url(url, query):
-    scheme, netloc, path, base_query, fragment = urlparse.urlsplit(url)
+    scheme, netloc, path, base_query, fragment = urllib.parse.urlsplit(url)
 
     if base_query:
         query = '%s&%s' % (base_query, query)
 
-    return urlparse.urlunsplit((scheme, netloc, path, query, fragment))
+    return urllib.parse.urlunsplit((scheme, netloc, path, query, fragment))
 
 
 class ApiRequestor(object): # noqa
@@ -64,7 +64,7 @@ class ApiRequestor(object): # noqa
         if method in ['get', 'delete']:
             if params:
                 abs_url = _build_api_url(
-                    abs_url, urllib.urlencode(list(encoded_params)))
+                    abs_url, urllib.parse.urlencode(list(encoded_params)))
             put_data = None
         elif method == 'put':
             put_data = util.json.dumps(dict(encoded_params))

@@ -1,4 +1,4 @@
-from __future__ import print_function # noqa
+ # noqa
 
 import logging
 import sys
@@ -20,12 +20,12 @@ __all__ = [
 ]
 
 try:
-    import cStringIO as StringIO
+    import io as StringIO
 except ImportError:
-    import StringIO
+    import io
 
 try:
-    from urlparse import parse_qsl
+    from urllib.parse import parse_qsl
 except ImportError:
     from cgi import parse_qsl
 
@@ -43,7 +43,7 @@ except ImportError:
 
 
 def utf8(value): # noqa
-    if sys.version_info < (3, 0) and isinstance(value, unicode):
+    if sys.version_info < (3, 0) and isinstance(value, str):
         return value.encode('utf-8')
     else:
         return value
@@ -58,11 +58,11 @@ def log_debug(message, **params): # noqa
 
 def format_log_message(props): # noqa
     def fmt(key, val):
-        if not isinstance(val, basestring):
-            val = unicode(val)
+        if not isinstance(val, str):
+            val = str(val)
         if re.search(r'\s', val):
             val = repr(val)
         if re.search(r'\s', key):
             key = repr(key)
-        return u'{key}={val}'.format(key=key, val=val)
-    return u' '.join([fmt(key, val) for key, val in sorted(props.items())])
+        return '{key}={val}'.format(key=key, val=val)
+    return ' '.join([fmt(key, val) for key, val in sorted(props.items())])

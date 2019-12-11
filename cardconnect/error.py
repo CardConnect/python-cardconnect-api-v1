@@ -23,7 +23,7 @@ class CardConnectError(Exception): # noqa
             return self.__unicode__()
     else:
         def __str__(self): # noqa
-            return unicode(self).encode('utf-8')
+            return str(self).encode('utf-8')
 
 
 class ApiError(CardConnectError): # noqa

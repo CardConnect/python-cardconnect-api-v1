@@ -6,7 +6,7 @@ cardconnect.base_url = 'fts.cardconnect.com:6443'
 cardconnect.debug = True
 
 
-print "Performing profile creation ..."
+print("Performing profile creation ...")
 
 resp = cardconnect.Profile.create(
     merchid='496160873888',
@@ -14,9 +14,9 @@ resp = cardconnect.Profile.create(
     name='Test User'
 )
 
-print 'Profile creation response: %r' % (resp, )
+print('Profile creation response: %r' % (resp, ))
 
-print "Performing profile update ..."
+print("Performing profile update ...")
 
 resp = cardconnect.Profile.update(
     merchid='496160873888',
@@ -26,16 +26,16 @@ resp = cardconnect.Profile.update(
     profileupdate='Y'
 )
 
-print 'Profile update response: %r' % (resp, )
+print('Profile update response: %r' % (resp, ))
 
-print "Performing profile get ..."
+print("Performing profile get ...")
 
 resp = cardconnect.Profile.get('13106769609077182008', '496160873888')
 
-print 'Profile get response: %r' % (resp, )
+print('Profile get response: %r' % (resp, ))
 
-print "Performing profile deletion ..."
+print("Performing profile deletion ...")
 
 resp = cardconnect.Profile.delete('13106769609077182008', '496160873888')
 
-print 'Profile deletion response: %r' % (resp, )
+print('Profile deletion response: %r' % (resp, ))

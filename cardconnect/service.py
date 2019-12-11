@@ -1,4 +1,4 @@
-import urllib # noqa
+import urllib.request, urllib.parse, urllib.error # noqa
 
 from cardconnect import api_requestor
 
@@ -13,7 +13,7 @@ class ApiResource(): # noqa
 
     @classmethod
     def class_name(cls): # noqa
-        return str(urllib.quote_plus(cls.__name__.lower()))
+        return str(urllib.parse.quote_plus(cls.__name__.lower()))
 
     @classmethod
     def class_url(cls): # noqa

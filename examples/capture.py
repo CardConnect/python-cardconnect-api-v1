@@ -6,11 +6,11 @@ cardconnect.base_url = 'fts.cardconnect.com:6443'
 cardconnect.debug = True
 
 
-print "Performing capture ..."
+print("Performing capture ...")
 
 resp = cardconnect.Capture.create(
     merchid='496160873888',
     retref='110776233356'
 )
 
-print 'Capture response: %r' % (resp, )
+print('Capture response: %r' % (resp, ))
