@@ -6,7 +6,7 @@ cardconnect.base_url = 'fts.cardconnect.com:6443'
 cardconnect.debug = True
 
 
-print "Performing auth ..."
+print("Performing auth ...")
 
 resp = cardconnect.Auth.create(
     merchid='496160873888',
@@ -16,4 +16,4 @@ resp = cardconnect.Auth.create(
     currency='USD'
 )
 
-print 'Auth response: %r' % (resp, )
+print('Auth response: %r' % (resp, ))
