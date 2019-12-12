@@ -69,7 +69,7 @@ class ApiRequestor(object): # noqa
         elif method == 'put':
             put_data = util.json.dumps(dict(encoded_params))
 
-        base64_creds = base64.b64encode('%s:%s' % (username, password))
+        base64_creds = base64.b64encode(f'{username}:{password}'.encode())
 
         headers = {
             'Authorization': 'Basic %s' % (base64_creds),
